@@ -9,7 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.css">
+  <!-- CodeMirror for code editor -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/theme/dracula.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/mode/python/python.min.js"></script>
@@ -20,24 +21,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/addon/edit/closebrackets.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/addon/edit/matchbrackets.min.js"></script>
   <style>
+    /* Custom styles */
     .CodeMirror {
-      height: auto !important;
-      min-height: 150px;
-      max-height: none;
-      font-size: 13px;
-      border-radius: 0.5rem;
-      overflow-y: auto;
-      border: 1px solid #e5e7eb;
+      height: auto !important; /* Keep this */
+min-height: unset;        /* Remove minimum height constraint */
+max-height: unset;        /* Remove maximum height constraint */
+font-size: 13px;
+border-radius: 0.5rem;
+overflow-y: visible;      /* Let content define the height */
+border: 1px solid #e5e7eb;
     }
     
+    /* Mobile responsive CodeMirror */
     @media (max-width: 640px) {
       .CodeMirror {
-        font-size: 11px;
-        min-height: 60px;
-        max-height: none;
+       font-size: 11px;
+height: auto !important;
+min-height: unset;
+max-height: unset;
+overflow-y: visible;
+
       }
     }
     
+    /* WhatsApp-like message bubbles */
     .message-bubble {
       max-width: 85%;
       word-wrap: break-word;
@@ -70,6 +77,7 @@
       padding: 4px;
     }
     
+    /* Message content */
     .message-content {
       padding: 8px 12px;
       font-size: 14px;
@@ -86,6 +94,7 @@
       align-items: center;
     }
     
+    /* Image handling */
     .message-image-container {
       max-width: 280px;
       border-radius: 12px;
@@ -105,6 +114,7 @@
       border-radius: 12px;
     }
     
+    /* Mobile optimizations */
     @media (max-width: 768px) {
       .message-bubble {
         max-width: 92%;
@@ -134,6 +144,7 @@
       }
     }
     
+    /* Copy button improvements */
     .copy-button {
       position: absolute;
       top: 8px;
@@ -161,6 +172,7 @@
       background-color: rgba(79, 70, 229, 1);
     }
     
+    /* Animations */
     @keyframes fadeInUp {
       from { 
         opacity: 0; 
@@ -176,13 +188,7 @@
       animation: fadeInUp 0.3s ease-out;
     }
     
-    @media (max-width: 768px) {
-      #screenshot-btn {
-        font-size: 12px;
-        padding: 8px 12px;
-      }
-    }
-    
+    /* Scrollbar styling */
     .messages-scroll::-webkit-scrollbar {
       width: 6px;
     }
@@ -201,6 +207,7 @@
       background: #a8a8a8;
     }
     
+    /* Input area styling */
     .input-area {
       background: white;
       border-top: 1px solid #e5e7eb;
@@ -257,6 +264,7 @@
       transform: none;
     }
     
+    /* File input styling */
     .file-input-container {
       position: relative;
     }
@@ -287,6 +295,7 @@
       background: #4b5563;
     }
     
+    /* Image preview in input */
     .image-preview {
       max-width: 200px;
       max-height: 200px;
@@ -294,6 +303,7 @@
       margin: 8px 0;
     }
     
+    /* Full screen image modal */
     .image-modal {
       position: fixed;
       top: 0;
@@ -338,6 +348,7 @@
       justify-content: center;
     }
     
+    /* Typing indicator */
     .typing-indicator {
       display: flex;
       align-items: center;
@@ -380,72 +391,6 @@
         opacity: 1;
       }
     }
-
-    .action-btn {
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-      text-align: center;
-      font-size: 14px;
-    }
-    
-    .action-btn:hover {
-      transform: translateY(-2px);
-    }
-    
-    .action-btn:active {
-      transform: translateY(0);
-    }
-    
-    .action-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .action-btn i {
-      font-size: 16px;
-    }
-    
-    .screenshot-btn {
-      background: #3B82F6;
-      color: white;
-    }
-    
-    .solution-btn {
-      background: #10B981;
-      color: white;
-    }
-    
-    .text-btn {
-      background: #8B5CF6;
-      color: white;
-    }
-    
-    .audio-btn {
-      background: #EC4899;
-      color: white;
-    }
-    
-    .mobile-buttons-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      width: 100%;
-    }
-    
-    @media (max-width: 480px) {
-      .mobile-buttons-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col font-sans"> 
@@ -474,37 +419,22 @@
      <div id="sidebar" class="sidebar-desktop w-80 bg-white border-r border-gray-200 flex flex-col"> 
       <!-- Controls -->
        <div class="p-4 border-b border-gray-200">
-        <h2 class="font-semibold text-gray-800 mb-3">Actions</h2>
+        <h2 class="font-semibold text-gray-800 mb-3">Controls</h2>
         <div class="space-y-3">
-          <button id="screenshot-btn" class="action-btn screenshot-btn w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+          <button id="refresh-btn" class="w-full bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition flex items-center justify-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            Take Screenshot
+            Refresh
           </button>
-          
-          <button id="send-solution-btn" class="action-btn solution-btn w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Send Solution
-          </button>
-          
-          <button id="send-text-btn" class="action-btn text-btn w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Send Extracted Text
-          </button>
-          
-          <button id="listen-audio-btn" class="action-btn audio-btn w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-            </svg>
-            Listen Audio
-          </button>
-          
+          <!-- Add this after refresh button -->
+<button id="screenshot-btn" class="w-full bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center text-sm">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+  </svg>
+  Take Screenshot
+</button>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Auto-refresh</label>
             <select id="auto-refresh-interval" class="block w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-md">
@@ -526,6 +456,33 @@
           </div>
         </div>
       </div> 
+
+      <!-- Send Message Form -->
+       <div class="p-4 flex-1 flex flex-col">
+        <h3 class="font-semibold text-gray-800 mb-3">Send Message</h3>
+        <form id="send-message-form" class="flex-1 flex flex-col">
+          <div class="mb-3">
+            <input type="text" id="sender-name" name="sender" class="block w-full px-3 py-2 text-sm border border-gray-300 rounded-md" placeholder="Your name" required>
+          </div>
+          
+          <div class="flex-1 mb-3">
+            <textarea id="message-content" name="content" rows="4" class="block w-full px-3 py-2 text-sm border border-gray-300 rounded-md resize-none" placeholder="Type your message..."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Attach Image</label>
+            <input type="file" id="image-input" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+            <div id="image-preview-container" class="mt-2 hidden">
+              <img id="image-preview" class="image-preview">
+              <button type="button" id="remove-image" class="mt-2 text-sm text-red-600 hover:text-red-800">Remove image</button>
+            </div>
+          </div>
+          
+          <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm">
+            Send Message
+          </button>
+        </form>
+      </div>
     </div> 
 
     <!-- Messages Area -->
@@ -545,41 +502,33 @@
         </div>
       </div> 
 
-      <!-- Mobile Buttons Area -->
+      <!-- Mobile Input Area -->
       <div class="mobile-input input-area">
-        <div class="mobile-buttons-grid">
-          <button id="mobile-screenshot-btn" class="action-btn screenshot-btn">
+        <form id="mobile-message-form" class="input-container">
+          <div class="file-input-container">
+            <input type="file" id="mobile-image-input" accept="image/*" class="file-input">
+            <button type="button" class="file-input-button">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+              </svg>
+            </button>
+          </div>
+          <textarea id="mobile-message-input" class="message-input" placeholder="Type a message..." rows="1"></textarea>
+          <button type="submit" class="send-button" disabled>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
-            Screenshot
           </button>
-          
-          <button id="mobile-send-solution-btn" class="action-btn solution-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Solution
-          </button>
-          
-          <button id="mobile-send-text-btn" class="action-btn text-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Text
-          </button>
-          
-          <button id="mobile-listen-audio-btn" class="action-btn audio-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-            </svg>
-            Audio
-          </button>
+        </form> 
+        
+        <!-- Mobile image preview -->
+         <div id="mobile-image-preview-container" class="hidden mt-2">
+          <img id="mobile-image-preview" class="image-preview">
+          <button type="button" id="mobile-remove-image" class="text-sm text-red-600 hover:text-red-800 mt-1">Remove image</button>
         </div>
       </div>
     </div>
-  </main>
+  </main> 
 
   <!-- Image Modal -->
   <div id="image-modal" class="image-modal">
@@ -594,11 +543,9 @@
 
   <script>
     // API configuration
-
-    const API_URL = window.location.origin + '/messages'; 
-    const API_KEY = 'X7kP9mW3qT2rY8nF4vJ6hL5zB1cD'; // Your actual backend    const API_KEY = 'X7kP9mW3qT2rY8nF4vJ6hL5zB1cD';
-    const ACTION_API_URL = 'http://172.18.11.231:5000/process-action';
-    
+    const API_URL = window.location.origin + '/messages';
+    const API_KEY = 'X7kP9mW3qT2rY8nF4vJ6hL5zB1cD';
+    const SCREENSHOT_API_URL = 'X7kP9mW3qT2rY8nF4vJ6hL5zB1cD'; // Replace with your actual API endpoint
     let autoRefreshInterval = null;
     let POLLING_INTERVAL = 10000;
     let lastRefreshTime = new Date();
@@ -606,114 +553,128 @@
     let messages = [];
     let knownMessageIds = new Set();
     let isFirstLoad = true;
-    let currentUser = 'Mobile User';;
+    let currentUser = localStorage.getItem('currentUser') || '';
+    let selectedImage = null;
+    let selectedImageMobile = null;
 
     // DOM elements
     const messagesContainer = document.getElementById('messages-container');
     const messagesList = document.getElementById('messages-list');
+    const refreshBtn = document.getElementById('refresh-btn');
     const autoRefreshIntervalSelect = document.getElementById('auto-refresh-interval');
     const filterTypeSelect = document.getElementById('filter-type');
     const messageCountElement = document.getElementById('message-count');
+    const sendMessageForm = document.getElementById('send-message-form');
+    const mobileMessageForm = document.getElementById('mobile-message-form');
     const notification = document.getElementById('notification');
     const notificationMessage = document.getElementById('notification-message');
     const imageModal = document.getElementById('image-modal');
     const modalImage = document.getElementById('modal-image');
     const closeImageModal = document.getElementById('close-image-modal');
 
-    // Button elements
-    const screenshotBtn = document.getElementById('screenshot-btn');
-    const sendSolutionBtn = document.getElementById('send-solution-btn');
-    const sendTextBtn = document.getElementById('send-text-btn');
-    const listenAudioBtn = document.getElementById('listen-audio-btn');
-    const mobileScreenshotBtn = document.getElementById('mobile-screenshot-btn');
-    const mobileSendSolutionBtn = document.getElementById('mobile-send-solution-btn');
-    const mobileSendTextBtn = document.getElementById('mobile-send-text-btn');
-    const mobileListenAudioBtn = document.getElementById('mobile-listen-audio-btn');
+    // Image handling elements
+    const imageInput = document.getElementById('image-input');
+    const imagePreview = document.getElementById('image-preview');
+    const imagePreviewContainer = document.getElementById('image-preview-container');
+    const removeImageBtn = document.getElementById('remove-image');
+    
+    const mobileImageInput = document.getElementById('mobile-image-input');
+    const mobileImagePreview = document.getElementById('mobile-image-preview');
+    const mobileImagePreviewContainer = document.getElementById('mobile-image-preview-container');
+    const mobileRemoveImageBtn = document.getElementById('mobile-remove-image');
+    const mobileMessageInput = document.getElementById('mobile-message-input');
+    const mobileSendButton = mobileMessageForm.querySelector('.send-button');
 
-    // API call function
-    async function testConnection() {
-  try {
-    const response = await fetch('http://172.18.11.231:5000/test');
-    console.log('Connection test:', response.status);
-  } catch (error) {
-    console.error('Connection failed:', error);
-  }
-}
-// Call this function: testConnection();
-    async function callApi(endpoint, data = {}) {
-      try {
-        console.log('Calling API:', endpoint, data);  
-        showNotification(`Sending request to ${endpoint}...`);
-        
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY
-          },
-          body: JSON.stringify({
-            ...data,
-            timestamp: new Date().toISOString(),
-            sender: currentUser || 'System'
-          })
-        });
-        
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`API request failed: ${response.status} - ${errorText}`);
+    // Auto-resize textarea
+    function autoResize(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    // Initialize mobile message input
+    mobileMessageInput.addEventListener('input', function() {
+      autoResize(this);
+      toggleSendButton();
+    });
+
+    function toggleSendButton() {
+      const hasContent = mobileMessageInput.value.trim() || selectedImageMobile;
+      mobileSendButton.disabled = !hasContent;
+    }
+
+    // Image handling functions
+    function handleImageSelect(input, preview, container, isDesktop = true) {
+      const file = input.files[0];
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) { // 5MB limit
+          showNotification('Image size must be less than 5MB');
+          input.value = '';
+          return;
         }
-        
-        const result = await response.json();
-        showNotification('Action completed successfully!');
-        return result;
-      } catch (error) {
-        console.error('API Error:', error);
-        showNotification('Failed: ' + error.message);
-        return null;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          container.classList.remove('hidden');
+          
+          if (isDesktop) {
+            selectedImage = file;
+          } else {
+            selectedImageMobile = file;
+            toggleSendButton();
+          }
+        };
+        reader.readAsDataURL(file);
       }
     }
 
-    // Screenshot function
-    async function takeScreenshot() {
-      return await callApi(ACTION_API_URL, { 
-        action: 'screenshot', 
-        capture_new: true 
-      });
+    function removeImage(input, container, isDesktop = true) {
+      input.value = '';
+      container.classList.add('hidden');
+      
+      if (isDesktop) {
+        selectedImage = null;
+      } else {
+        selectedImageMobile = null;
+        toggleSendButton();
+      }
     }
 
-    // Send solution function
-    async function sendSolution() {
-      return await callApi(ACTION_API_URL, { 
-        action: 'solution', 
-        capture_new: true 
-      });
+    // Image event listeners
+    imageInput.addEventListener('change', () => handleImageSelect(imageInput, imagePreview, imagePreviewContainer, true));
+    removeImageBtn.addEventListener('click', () => removeImage(imageInput, imagePreviewContainer, true));
+
+    mobileImageInput.addEventListener('change', () => handleImageSelect(mobileImageInput, mobileImagePreview, mobileImagePreviewContainer, false));
+    mobileRemoveImageBtn.addEventListener('click', () => removeImage(mobileImageInput, mobileImagePreviewContainer, false));
+
+    // Image modal functions
+    function openImageModal(imageSrc) {
+      modalImage.src = imageSrc;
+      imageModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    // Send extracted text function
-    async function sendExtractedText() {
-      return await callApi(ACTION_API_URL, { 
-        action: 'extract-text', 
-        capture_new: true 
-      });
+    function closeImageModalFunc() {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
     }
 
-    // Listen audio function
-    async function listenAudio() {
-      return await callApi(ACTION_API_URL, { 
-        action: 'audio' 
+    closeImageModal.addEventListener('click', closeImageModalFunc);
+    imageModal.addEventListener('click', function(e) {
+      if (e.target === imageModal) {
+        closeImageModalFunc();
+      }
+    });
+
+    // Convert file to base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
       });
     }
-
-    // Button event listeners
-    screenshotBtn.addEventListener('click', takeScreenshot);
-    sendSolutionBtn.addEventListener('click', sendSolution);
-    sendTextBtn.addEventListener('click', sendExtractedText);
-    listenAudioBtn.addEventListener('click', listenAudio);
-    
-    mobileScreenshotBtn.addEventListener('click', takeScreenshot);
-    mobileSendSolutionBtn.addEventListener('click', sendSolution);
-    mobileSendTextBtn.addEventListener('click', sendExtractedText);
-    mobileListenAudioBtn.addEventListener('click', listenAudio);
 
     // Fetch messages function
     async function fetchMessages() {
@@ -723,7 +684,7 @@
             'x-api-key': API_KEY
           }
         });
-
+        
         if (!response.ok) throw new Error('Failed to fetch messages');
         
         const newMessages = await response.json();
@@ -735,7 +696,7 @@
           return !knownMessageIds.has(msgId);
         });
         
-        messages = Array.isArray(newMessages) ? newMessages : [];
+        messages = newMessages;
         
         messages.forEach(msg => {
           const msgId = `${msg.timestamp}-${(msg.content || msg.image || '').substring(0, 20)}`;
@@ -884,8 +845,7 @@
           viewportMargin: Infinity,
           autoRefresh: true,
           matchBrackets: true,
-          lineWrapping: true,
-          scrollbarStyle: "simple"
+          lineWrapping: true
         });
       });
 
@@ -975,38 +935,154 @@
       }, 3000);
     }
 
-    function openImageModal(imageSrc) {
-      modalImage.src = imageSrc;
-      imageModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+    async function sendMessage(formData, imageFile = null) {
+      const content = formData.get('content') || '';
+      const sender = formData.get('sender') || currentUser;
+      
+      if (!sender.trim()) {
+        showNotification('Please enter your name');
+        return false;
+      }
 
-    function closeImageModalFunc() {
-      imageModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
+      if (!content.trim() && !imageFile) {
+        showNotification('Please enter a message or select an image');
+        return false;
+      }
 
-    closeImageModal.addEventListener('click', closeImageModalFunc);
-    imageModal.addEventListener('click', function(e) {
-      if (e.target === imageModal) {
-        closeImageModalFunc();
+      // Save current user
+      currentUser = sender;
+      localStorage.setItem('currentUser', currentUser);
+      
+      let messageData = {
+        message: content,
+        timestamp: new Date().toISOString(),
+        sender: sender
+      };
+
+      // Add image if present
+      if (imageFile) {
+        try {
+          const base64Image = await fileToBase64(imageFile);
+          messageData.image = base64Image;
+          messageData.type = 'image';
+        } catch (error) {
+          console.error('Error converting image:', error);
+          showNotification('Failed to process image');
+          return false;
+        }
+      }
+      
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': API_KEY
+          },
+          body: JSON.stringify(messageData)
+        });
+        
+        if (!response.ok) throw new Error('Failed to send message');
+        
+        showNotification('Message sent successfully!');
+        await fetchMessages();
+        return true;
+        
+      } catch (error) {
+        console.error('Error sending message:', error);
+        showNotification('Failed to send message. Please try again.');
+        return false;
+      }
+    }
+// Screenshot function
+async function takeScreenshot() {
+  try {
+    const response = await fetch(SCREENSHOT_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': API_KEY
+      },
+      body: JSON.stringify({
+        action: 'take_screenshot',
+        timestamp: new Date().toISOString()
+      })
+    });
+    
+    if (!response.ok) throw new Error('Failed to take screenshot');
+    
+    const result = await response.json();
+    showNotification('Screenshot taken successfully!');
+    
+    setTimeout(() => {
+      fetchMessages();
+    }, 1000);
+    
+    return true;
+    
+  } catch (error) {
+    console.error('Error taking screenshot:', error);
+    showNotification('Failed to take screenshot. Please try again.');
+    return false;
+  }
+}
+    // Desktop form submission
+    sendMessageForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(sendMessageForm);
+      
+      const success = await sendMessage(formData, selectedImage);
+      if (success) {
+        sendMessageForm.reset();
+        removeImage(imageInput, imagePreviewContainer, true);
       }
     });
 
+    // Mobile form submission
+    mobileMessageForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      const formData = new FormData();
+      formData.append('content', mobileMessageInput.value);
+      formData.append('sender', currentUser || 'Mobile User');
+      
+      const success = await sendMessage(formData, selectedImageMobile);
+      if (success) {
+        mobileMessageInput.value = '';
+        autoResize(mobileMessageInput);
+        removeImage(mobileImageInput, mobileImagePreviewContainer, false);
+        toggleSendButton();
+      }
+    });
+
+    // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
       // Load saved user name
-      // currentUser = localStorage.getItem('currentUser') || '';
+      const senderNameInput = document.getElementById('sender-name');
+      if (currentUser && senderNameInput) {
+        senderNameInput.value = currentUser;
+      }
 
       // Initial fetch
       fetchMessages();
       startAutoRefresh();
       
+      // Refresh button
+      refreshBtn.addEventListener('click', () => {
+        fetchMessages();
+        showNotification('Messages refreshed');
+      });
+      // Screenshot button event listener
+const screenshotBtn = document.getElementById('screenshot-btn');
+screenshotBtn.addEventListener('click', () => {
+  takeScreenshot();
+});
       // Auto-refresh interval change
       autoRefreshIntervalSelect.addEventListener('change', () => {
         POLLING_INTERVAL = parseInt(autoRefreshIntervalSelect.value);
         stopAutoRefresh();
         startAutoRefresh();
-        showNotification(`Auto-refresh set to ${POLLING_INTERVAL / 1001} seconds`);
+        showNotification(`Auto-refresh set to ${POLLING_INTERVAL / 1000} seconds`);
       });
       
       // Filter messages
@@ -1016,7 +1092,7 @@
         displayMessages(filteredMessages, true);
       });
 
-      // Mobile sidebar toggle
+      // Mobile sidebar toggle (if needed)
       const toggleSidebar = document.getElementById('toggle-sidebar');
       const sidebar = document.getElementById('sidebar');
       
